@@ -1,0 +1,1 @@
+watchurl=https://github.com/bryteise/ister/releases/ /bryteise/ister/releases/download/v\d[\d.]*/ister-(\d[\d.]*).tar.xz
