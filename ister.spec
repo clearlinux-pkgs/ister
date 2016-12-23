@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 43
-Release  : 73
+Release  : 74
 URL      : https://github.com/bryteise/ister/releases/download/v43/ister-43.tar.gz
 Source0  : https://github.com/bryteise/ister/releases/download/v43/ister-43.tar.gz
 Summary  : No detailed summary available
