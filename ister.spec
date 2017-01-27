@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 43
-Release  : 74
+Release  : 75
 URL      : https://github.com/bryteise/ister/releases/download/v43/ister-43.tar.gz
 Source0  : https://github.com/bryteise/ister/releases/download/v43/ister-43.tar.gz
 Summary  : No detailed summary available
@@ -14,9 +14,11 @@ Requires: ister-bin
 Requires: ister-config
 Requires: ister-data
 BuildRequires : pkgconfig(systemd)
+BuildRequires : pycurl
 BuildRequires : python-dev
 BuildRequires : python3
 BuildRequires : systemd-dev
+Patch1: 0001-Add-ability-to-pass-alternate-swupd-cert.patch
 
 %description
 ister is a template based installer for linux
@@ -60,9 +62,11 @@ extras components for the ister package.
 
 %prep
 %setup -q -n ister-43
+%patch1 -p1
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1485560457
 %autogen --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -74,6 +78,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1485560457
 rm -rf %{buildroot}
 %make_install
 
