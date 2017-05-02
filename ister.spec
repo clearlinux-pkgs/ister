@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 46
-Release  : 78
+Release  : 79
 URL      : https://github.com/bryteise/ister/releases/download/v46/ister-46.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v46/ister-46.tar.xz
 Summary  : No detailed summary available
