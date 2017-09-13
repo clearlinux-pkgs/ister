@@ -1,5 +1,5 @@
 PKG_NAME := ister
-URL := https://github.com/bryteise/ister/releases/download/v53/ister-53.tar.xz
+URL := https://github.com/bryteise/ister/releases/download/v54/ister-54.tar.xz
 
 
 include ../common/Makefile.common
