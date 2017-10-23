@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 57
-Release  : 89
+Release  : 90
 URL      : https://github.com/bryteise/ister/releases/download/v57/ister-57.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v57/ister-57.tar.xz
 Summary  : No detailed summary available
