@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 61
-Release  : 94
+Release  : 95
 URL      : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Summary  : No detailed summary available
@@ -18,6 +18,7 @@ BuildRequires : pycurl
 BuildRequires : python-dev
 BuildRequires : python3
 BuildRequires : systemd-dev
+Patch1: 0001-Disable-swap-devices-enabled-by-ister.patch
 
 %description
 ister is a template based installer for linux
@@ -61,13 +62,14 @@ extras components for the ister package.
 
 %prep
 %setup -q -n ister-61
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516644246
+export SOURCE_DATE_EPOCH=1516911502
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -79,7 +81,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1516644246
+export SOURCE_DATE_EPOCH=1516911502
 rm -rf %{buildroot}
 %make_install
 

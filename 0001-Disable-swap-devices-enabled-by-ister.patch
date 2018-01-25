@@ -1,0 +1,33 @@
+From 107d04692dfbc46c7e0c1d38570623f89781e2bb Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 25 Jan 2018 20:17:21 +0000
+Subject: [PATCH] Disable swap devices enabled by ister
+
+Turn off swap devices that were enabled by ister during image
+creation/installation. This resolves an issue where loop devices could
+not be cleaned up after image creation.
+---
+ ister.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/ister.py b/ister.py
+index c2735c0..0dd623a 100755
+--- a/ister.py
++++ b/ister.py
+@@ -739,6 +739,13 @@ def cleanup(args, template, target_dir, raise_exception=True):
+         run_command("rm -fr {}".format(target_dir),
+                     raise_exception=raise_exception)
+ 
++    # Turn off any swap devices we enabled
++    for fst in template["FilesystemTypes"]:
++        (dev, _) = get_device_name(template, fst["disk"])
++        if fst["type"] == "swap":
++            run_command("swapoff {0}{1}".format(dev, fst["partition"]),
++                        raise_exception=raise_exception)
++
+     if template.get("dev"):
+         run_command("losetup --detach {0}".format(template["dev"]),
+                     raise_exception=raise_exception)
+-- 
+2.15.1
+
