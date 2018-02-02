@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 61
-Release  : 95
+Release  : 96
 URL      : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Summary  : No detailed summary available
