@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 61
-Release  : 96
+Release  : 97
 URL      : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v61/ister-61.tar.xz
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ License  : GPL-3.0
 Requires: ister-bin
 Requires: ister-config
 Requires: ister-data
+Requires: cryptsetup
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pycurl
 BuildRequires : python-dev
@@ -69,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516911502
+export SOURCE_DATE_EPOCH=1520885698
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -81,7 +82,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1516911502
+export SOURCE_DATE_EPOCH=1520885698
 rm -rf %{buildroot}
 %make_install
 
