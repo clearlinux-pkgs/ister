@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 62
-Release  : 98
+Release  : 99
 URL      : https://github.com/bryteise/ister/releases/download/v62/ister-62.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v62/ister-62.tar.xz
 Summary  : No detailed summary available
