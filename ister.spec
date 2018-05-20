@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 62
-Release  : 100
+Release  : 101
 URL      : https://github.com/bryteise/ister/releases/download/v62/ister-62.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v62/ister-62.tar.xz
 Summary  : No detailed summary available
@@ -19,6 +19,7 @@ BuildRequires : pycurl
 BuildRequires : python-dev
 BuildRequires : python3
 BuildRequires : systemd-dev
+Patch1: 0001-Do-not-run-ldconfig-in-post-install-nonchroot.patch
 
 %description
 ister is a template based installer for linux
@@ -62,13 +63,14 @@ extras components for the ister package.
 
 %prep
 %setup -q -n ister-62
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524263470
+export SOURCE_DATE_EPOCH=1526788069
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -80,7 +82,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1524263470
+export SOURCE_DATE_EPOCH=1526788069
 rm -rf %{buildroot}
 %make_install
 

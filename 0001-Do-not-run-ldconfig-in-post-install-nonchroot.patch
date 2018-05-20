@@ -1,0 +1,34 @@
+From 1b0d0cff5aa70a7d1d3fe07595da2fd2ac23bd81 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Sun, 20 May 2018 03:45:11 +0000
+Subject: [PATCH] Do not run ldconfig in post install nonchroot
+
+Ister and swupd run ldconfig after an install redundantly.  We want to
+have ister default to letting swupd run its post install triggers, or
+having a user run these manually in the same way that swupd would with
+their post script, rather than replicating part of them itself.  Running
+ldconfig differently in both instances has the side-effect of removing
+broken library symlinks from an install.
+
+Signed-off-by: George T Kramer <george.t.kramer@intel.com>
+---
+ ister.py | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/ister.py b/ister.py
+index fc88a8a..e9f784a 100755
+--- a/ister.py
++++ b/ister.py
+@@ -697,9 +697,6 @@ def post_install_nonchroot(template, target_dir):
+ 
+     The mount root for the install is passed as an argument to each script.
+     """
+-    # Always run some post install jobs
+-    run_command("ldconfig -r {}".format(target_dir))
+-
+     if not template.get("PostNonChroot"):
+         return
+     LOG.info("Running post non-chroot scripts")
+-- 
+2.17.0
+
