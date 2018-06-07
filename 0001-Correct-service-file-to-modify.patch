@@ -1,0 +1,26 @@
+From f3930f8f9072e8b236ef25e04872d1819c55c5a0 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 7 Jun 2018 19:52:10 +0000
+Subject: [PATCH] Correct service file to modify
+
+ucd is now the cloud-init configuration handler so use that instead.
+---
+ ister.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ister.py b/ister.py
+index cbfae2b..38bde1b 100755
+--- a/ister.py
++++ b/ister.py
+@@ -1330,7 +1330,7 @@ def modify_cloud_init_service_file(target_dir):
+         that was just installed.
+     """
+     LOG.debug("Updating cloud-init.service to user role file for user-data")
+-    cloud_init_file = target_dir + "/usr/lib/systemd/system/cloud-init.service"
++    cloud_init_file = target_dir + "/usr/lib/systemd/system/ucd.service"
+ 
+     with open(cloud_init_file, "r") as service_file:
+         lines = service_file.readlines()
+-- 
+2.17.0
+
