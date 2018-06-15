@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 63
-Release  : 103
+Release  : 104
 URL      : https://github.com/bryteise/ister/releases/download/v63/ister-63.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v63/ister-63.tar.xz
 Summary  : No detailed summary available
