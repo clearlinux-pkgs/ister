@@ -16,7 +16,7 @@ Requires: ister-data
 Requires: cryptsetup
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pycurl
-BuildRequires : python-dev
+
 BuildRequires : python3
 BuildRequires : systemd-dev
 Patch1: 0001-Correct-service-file-to-modify.patch
