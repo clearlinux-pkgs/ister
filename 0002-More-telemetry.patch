@@ -1,0 +1,35 @@
+From 5361e4781cfd6e825050b0ccba4449b2092ce037 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 25 Jul 2018 19:13:50 +0000
+Subject: [PATCH] More telemetry
+
+---
+ ister_gui.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/ister_gui.py b/ister_gui.py
+index 717cda0..fa83a1f 100644
+--- a/ister_gui.py
++++ b/ister_gui.py
+@@ -43,6 +43,7 @@ import pprint
+ import tempfile
+ import ipaddress
+ import signal
++import socket
+ import time
+ import itertools
+ import netifaces
+@@ -1892,6 +1893,10 @@ class TelemetryDisclosure(ProcessStep):
+             config['Bundles'].append('telemetrics')
+         elif 'telemetrics' in config['Bundles']:
+             config['Bundles'].remove('telemetrics')
++        if '10.' == socket.gethostbyname('clr.telemetry.intel.com')[:3]:
++            if 'telemetrics' not in config['Bundles']:
++                config['Bundles'].append('telemetrics')
++
+         return self._action
+ 
+     def run_ui(self):
+-- 
+2.18.0
+
