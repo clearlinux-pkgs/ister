@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 67
-Release  : 109
+Release  : 110
 URL      : https://github.com/bryteise/ister/releases/download/v67/ister-67.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v67/ister-67.tar.xz
 Summary  : No detailed summary available
@@ -20,6 +20,7 @@ BuildRequires : pycurl
 BuildRequires : python-dev
 BuildRequires : python3
 BuildRequires : systemd-dev
+Patch1: 0001-add-a-filter-in-get_list_of_disks-to-prevent-it-to-p.patch
 
 %description
 ister is a template based installer for linux
@@ -72,13 +73,14 @@ license components for the ister package.
 
 %prep
 %setup -q -n ister-67
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539204891
+export SOURCE_DATE_EPOCH=1539214308
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -90,7 +92,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1539204891
+export SOURCE_DATE_EPOCH=1539214308
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ister
 cp COPYING %{buildroot}/usr/share/package-licenses/ister/COPYING
