@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 69
-Release  : 113
+Release  : 115
 URL      : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Summary  : No detailed summary available
@@ -13,13 +13,11 @@ License  : GPL-3.0
 Requires: ister-bin = %{version}-%{release}
 Requires: ister-data = %{version}-%{release}
 Requires: ister-license = %{version}-%{release}
-Requires: ister-services = %{version}-%{release}
 Requires: cryptsetup
+Requires: pycurl
+BuildRequires : cryptsetup
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pycurl
-BuildRequires : python-dev
-BuildRequires : python3
-BuildRequires : systemd-dev
 
 %description
 ister is a template based installer for linux
@@ -32,7 +30,6 @@ Summary: bin components for the ister package.
 Group: Binaries
 Requires: ister-data = %{version}-%{release}
 Requires: ister-license = %{version}-%{release}
-Requires: ister-services = %{version}-%{release}
 
 %description bin
 bin components for the ister package.
@@ -62,14 +59,6 @@ Group: Default
 license components for the ister package.
 
 
-%package services
-Summary: services components for the ister package.
-Group: Systemd services
-
-%description services
-services components for the ister package.
-
-
 %prep
 %setup -q -n ister-69
 
@@ -77,20 +66,25 @@ services components for the ister package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1541191906
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569354514
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1541191906
+export SOURCE_DATE_EPOCH=1569354514
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ister
 cp COPYING %{buildroot}/usr/share/package-licenses/ister/COPYING
@@ -118,8 +112,3 @@ cp COPYING %{buildroot}/usr/share/package-licenses/ister/COPYING
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/ister/COPYING
-
-%files services
-%defattr(-,root,root,-)
-%exclude /usr/lib/systemd/system/ister-provision.service
-%exclude /usr/lib/systemd/system/ister.service
