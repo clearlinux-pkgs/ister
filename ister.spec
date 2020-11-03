@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 69
-Release  : 115
+Release  : 116
 URL      : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Summary  : No detailed summary available
@@ -61,17 +61,18 @@ license components for the ister package.
 
 %prep
 %setup -q -n ister-69
+cd %{_builddir}/ister-69
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569354514
+export SOURCE_DATE_EPOCH=1604365424
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -81,13 +82,13 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1569354514
+export SOURCE_DATE_EPOCH=1604365424
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ister
-cp COPYING %{buildroot}/usr/share/package-licenses/ister/COPYING
+cp %{_builddir}/ister-69/COPYING %{buildroot}/usr/share/package-licenses/ister/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 %make_install
 
 %files
@@ -111,4 +112,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/ister/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/ister/COPYING
+/usr/share/package-licenses/ister/8624bcdae55baeef00cd11d5dfcfa60f68710a02
