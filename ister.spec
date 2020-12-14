@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 69
-Release  : 116
+Release  : 117
 URL      : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Summary  : No detailed summary available
