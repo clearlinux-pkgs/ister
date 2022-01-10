@@ -4,7 +4,7 @@
 #
 Name     : ister
 Version  : 69
-Release  : 119
+Release  : 120
 URL      : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Source0  : https://github.com/bryteise/ister/releases/download/v69/ister-69.tar.xz
 Summary  : No detailed summary available
@@ -14,10 +14,8 @@ Requires: ister-bin = %{version}-%{release}
 Requires: ister-data = %{version}-%{release}
 Requires: ister-license = %{version}-%{release}
 Requires: cryptsetup
-Requires: pycurl
-BuildRequires : cryptsetup
+Requires: pypi(pycurl)
 BuildRequires : pkgconfig(systemd)
-BuildRequires : pycurl
 
 %description
 ister is a template based installer for linux
@@ -68,7 +66,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604365424
+export SOURCE_DATE_EPOCH=1641845874
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -85,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604365424
+export SOURCE_DATE_EPOCH=1641845874
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ister
 cp %{_builddir}/ister-69/COPYING %{buildroot}/usr/share/package-licenses/ister/8624bcdae55baeef00cd11d5dfcfa60f68710a02
